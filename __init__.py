@@ -12,7 +12,8 @@ def solve(sudoku):
             i += 1
         else:
             sudoku[row][col] = 0
-            i = get_previous_index(i, empty_locations)
+            if i == 0: raise ValueError("unsolvable")
+            i -= 1
 
     for row in sudoku:
         print(row)
@@ -25,12 +26,6 @@ def find_empty(sudoku):
             if sudoku[row][col] == 0:
                 locations.append([row, col])
     return locations
-
-
-def get_previous_index(current, list):
-    if current == 0:
-        return len(list) - 1
-    return current - 1
 
 
 def get_value(sudoku, row, col):
